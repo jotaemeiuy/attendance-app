@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  h1 Asistencia por cedula #{id_number}
+  
+  table.table.table-bordered
+    thead
+      tr
+        th Fecha
+        th Asistencia
+    tbody
+      each record in attendance
+        tr
+          td #{record.date}
+          td #{record.attended ? 'Sí' : 'No'}
+
+  // Paginación
+  .pagination
+    if currentPage > 1
+      a.btn.btn-secondary(href=`/details?id_number=${id_number}&page=${currentPage - 1}`) Anterior
+    span.page-info Page #{currentPage} of #{totalPages}
+    if currentPage < totalPages
+      a.btn.btn-secondary(href=`/details?id_number=${id_number}&page=${currentPage + 1}`) Siguiente
+
+  a.btn.btn-primary(href="/") Volver

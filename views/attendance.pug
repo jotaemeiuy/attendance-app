@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1 Registro de Asistencia
+  form(action="/attendance" method="post")
+    .form-group
+      label(for="id_number") Selecciona Cedula
+      select.form-control(name="id_number" required)
+        each person in people
+          option(value=person.id_number) #{person.id_number} - #{person.name} #{person.surname}
+    button.btn.btn-primary(type="submit") Presente
+  hr
+  a.btn.btn-secondary(href="/") Volver
